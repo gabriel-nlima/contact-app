@@ -1,23 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ContactsList from './Contacts.jsx';
-import {NewContactHoc} from './Contacts.jsx';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
+import ContactsList, {InsertBtn} from './Contacts.jsx';
+import './index.css';
 
+//Container renderizado na página
 class App extends React.Component {
    render(){
-   	return(
-   		<div>
-   			<Container/>
-   		</div>
-   	);
-   }
-}
-
-class Container extends React.Component{
-	
-	render(){
 		const MainRow = RowHoc(ContactsList, 'main');
 		const SecondaryRow = RowHoc(InsertBtn,'sec');
 		return(
@@ -30,7 +17,8 @@ class Container extends React.Component{
 		);
 	}
 }
-
+//High Order Component, recebe um componente e o renderizia dentro de uma row
+//passando alguns dados para o componente
 function RowHoc(Component, id){
 	return class extends React.Component{
 		render(){
@@ -41,18 +29,19 @@ function RowHoc(Component, id){
 		}
 	}
 }
-export class InsertBtn extends React.Component{
-	constructor(props){
-		super(props);
-		this.handleNewContact = this.handleNewContact.bind(this);
-	}
-	handleNewContact(){
-		ReactDOM.render(<NewContactHoc/>, document.getElementById('sec'))
-	}
+class Header extends React.Component{
 	render(){
 		return(
-			<div className="col-sm-12 text-right">
-				<button type="submit" className="btn btn-primary" onClick={this.handleNewContact}>Novo Contato</button>
+			<h2 className="text-center">Contatos</h2>
+		);
+	}
+}
+class Footer extends React.Component{
+	render(){
+		return(
+			<div className="footer">
+				<p> Gabriel Nascimento Lima</p>
+				<p className="text-muted"> gabriel.lima13372@gmail.com</p>
 			</div>
 		);
 	}

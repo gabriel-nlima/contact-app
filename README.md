@@ -4,14 +4,29 @@ Uma aplicação web simples para gerênciar contatos. Cada contato pode possuir 
 
 ## Front-end
 
-Módulo contacts-app front-end utiliza ReactJS (react, react-dom e react-scripts) e as dependencias axios (para requisições HTTP) e Bootstrap para a grid e estilização dos componentes. Feito com create-react-app inicialmente. Dentro de contacts-app, instalar via npm:
+Módulo contacts-app front-end utiliza ReactJS (react, react-dom e react-scripts) e as dependências axios (para requisições HTTP), react-text-mask (para mascara de telefone) e Bootstrap para a grid e estilização dos componentes. Feito com create-react-app inicialmente. Dentro de contacts-app, instalar via npm:
+
 npm install react
+
 npm install react-dom
+
 npm install react-scripts
+
 npm install axios
-npm install bootstrap
+
+npm install react-text-mask
+
+npm install bootstrap (opcional)
+
 npm install react
+
 npm install react-dom
+
+Para iniciar, acessar o diretório contacts-app e digitar:
+
+npm start
+
+A aplicação front-end ficará disponivel em http://localhost:3000/
 ## Back-end
 
 O módulo back-end dessa aplicação utiliza [Spring Boot](https://spring.io/projects/spring-boot/) e [Spring Data Rest](https://projects.spring.io/spring-data-rest/) para gerar uma API Rest que persiste os dados em um banco de dados [H2](http://www.h2database.com/) em memória.

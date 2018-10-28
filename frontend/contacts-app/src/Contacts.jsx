@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import {InsertBtn} from './App.jsx';
-import Form from './Form.jsx';
+import Form from './Contacts.jsx';
 
+
+//High Order Components de contatos
+//recebe o componente e passa o contato para o mesmo, então renderiza
 function contactsHoc(Component, contact, other){
 	return class extends React.Component{
 		render(){
@@ -11,6 +13,27 @@ function contactsHoc(Component, contact, other){
 		}
 	}
 }
+//HOC para novo contato (passa um contato vazio)
+const EmptyContact = {name: '', email:'', gender:'', birthday:'', phone:'',}
+export const NewContactHoc = contactsHoc(Form, EmptyContact, true);
+//Botao de novo contato
+export class InsertBtn extends React.Component{
+	constructor(props){
+		super(props);
+		this.handleNewContact = this.handleNewContact.bind(this);
+	}
+	handleNewContact(){
+		ReactDOM.render(<NewContactHoc/>, document.getElementById('sec'))
+	}
+	render(){
+		return(
+			<div className="col-sm-12 text-right">
+				<button type="submit" className="btn btn-primary" onClick={this.handleNewContact}>Novo Contato</button>
+			</div>
+		);
+	}
+}
+//Busca os contatos da API e renderiza a tabela
 export default class ContactsList extends React.Component{
 	constructor(props){
 		super(props);
@@ -51,12 +74,14 @@ export default class ContactsList extends React.Component{
 		);
 	}
 }
+//Componente de linhas da tabela
 class ContactsRow extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleViewClick = this.handleViewClick.bind(this);
 	}
 	handleViewClick(){
+		//HOC que passa o contato a ser visualizado
 		const ViewContactHoc = contactsHoc(ViewContact, this.props.contact,false);
 		ReactDOM.render(<ViewContactHoc/>, document.getElementById('sec'))
 	}
@@ -78,16 +103,7 @@ class ContactsRow extends React.Component{
 		);
 	}
 }
-
-const EmptyContact = {
-			name: '',
-			email:'',
-			gender:'',
-			birthday:'',
-			phone:'',
-		}
-export const NewContactHoc = contactsHoc(Form, EmptyContact, true);
-
+//Visualizar o contato
 export class ViewContact extends React.Component{
 	constructor(props){
 		super(props);
@@ -107,24 +123,25 @@ export class ViewContact extends React.Component{
 		});
 	}
 	handleUpdateClick(){
+		//HOC que passa o contato a ser atualizado no formulario
 		const UpdateContactHoc = contactsHoc(Form, this.props.contact ,false);
 		ReactDOM.render(<UpdateContactHoc/>, document.getElementById('sec'))
 	}
 	render(){
 		return(
 			<React.Fragment>
-				<div className="col-sm-6">
+				<div className="col-sm-4">
 				<h4>Dados pessoais</h4>
 					Nome<p>{this.props.contact.name}</p>
 					Gênero<p>{this.props.contact.gender === 'MALE' ? 'Masculino' : 'Feminino'}</p>
 					Data de nascimento<p>{this.props.contact.birthday}</p>
 				</div>
-				<div className="col-sm-5">
+				<div className="col-sm-4">
 				<h4>Dados de contato</h4> 
 					E-mail <p>{this.props.contact.email}</p>
 					Telefone <p>{this.props.contact.phone}</p>
 				</div>
-				<div className="col-sm-1">
+				<div className="col-sm-4 text-right">
 					<button className="btn btn-secondary" onClick={this.handleUpdateClick}>
 						<img src="./imgs/baseline_edit_black_18dp.png" alt="Editar"/>
 					</button>
@@ -133,7 +150,7 @@ export class ViewContact extends React.Component{
 		);
 	}
 }
-
+//Deletar o contato
 class DeleteContact extends React.Component{
 	constructor(props){
 		super(props);
