@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ContactsList from './Contacts.jsx';
 import {NewContactHoc} from './Contacts.jsx';
 import Header from './Header.jsx';

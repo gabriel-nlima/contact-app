@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import {InsertBtn} from './App.jsx';
 import Form from './Form.jsx';
 
 function contactsHoc(Component, contact, other){
@@ -150,6 +151,7 @@ class DeleteContact extends React.Component{
 	      })
 	    alert('Contato '+this.props.name +' deletado');
 	    ReactDOM.unmountComponentAtNode(document.getElementById('sec'));
+	    ReactDOM.render(<InsertBtn/>, document.getElementById('sec'));
       	event.preventDefault();
   }
 
