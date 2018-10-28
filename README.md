@@ -18,9 +18,6 @@ npm install react-text-mask
 
 npm install bootstrap (opcional)
 
-npm install react
-
-npm install react-dom
 
 Para iniciar, acessar o diretório contacts-app e digitar:
 
