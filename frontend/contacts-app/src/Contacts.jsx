@@ -139,9 +139,6 @@ class DeleteContact extends React.Component{
 		super(props);
 		this.handleDelete = this.handleDelete.bind(this);
 	}
-	 handleChange = event => {
-    	this.setState({ id: event.target.value });
-  	}
 
 	handleDelete = event => {
 	    axios.delete(this.props.id)

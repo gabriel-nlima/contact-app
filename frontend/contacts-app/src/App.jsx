@@ -20,7 +20,6 @@ class Container extends React.Component{
 	render(){
 		const MainRow = RowHoc(ContactsList, 'main');
 		const SecondaryRow = RowHoc(InsertBtn,'sec');
-		/*const ThirdRow = RowHoc(InsertBtn, 'third');*/
 		return(
 			<div className="container">
 				<Header/>
