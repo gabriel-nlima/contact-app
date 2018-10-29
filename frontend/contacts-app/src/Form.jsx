@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import {InsertBtn} from './App.jsx';
+import {InsertBtn} from './Contacts.jsx';
 import MaskedInput from 'react-text-mask'
 export default class Form extends React.Component{
 	constructor(props){

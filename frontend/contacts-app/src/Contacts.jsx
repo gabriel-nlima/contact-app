@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import Form from './Contacts.jsx';
+import Form from './Form.jsx';
 
 
 //High Order Components de contatos
